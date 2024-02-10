@@ -1,0 +1,22 @@
+---
+title: "DATA607 assignment 1"
+author: "Dhanya Nair"
+date: "2024-02-10"
+output: html_document
+---
+Introduction
+I have taken the file from the link https://data.fivethirtyeight.com/
+I have selected the soccer predictions data and the info is at:https://github.com/fivethirtyeight/data/tree/master/soccer-spi
+
+```{r}
+
+library(dplyr)
+soccer_matches <- read.csv('https://raw.githubusercontent.com/datanerddhanya/DATA607/main/spi_matches.csv')
+soccer_matches <- soccer_matches[,c('season','date','league_id','league','team1','team2','spi1','spi2',   'prob1','prob2')]
+soccer_matches <- rename(soccer_matches,c(home_team = team1,away_team = team2))
+variable.names(soccer_matches)
+```
+////Conclusion
+I was successfully able to read a file into a data frame.
+i was able to select specific columns in the data frame
+i was able to rename some of the column names in teh data frame.
