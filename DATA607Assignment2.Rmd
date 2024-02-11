@@ -1,0 +1,24 @@
+---
+title: "DATA607Assignment2"
+author: "Dhanya Nair"
+date: "2024-02-11"
+output: html_document
+---
+
+# connecting to mySQL table
+
+```{r}
+library(DBI) 
+library(RMySQL)
+library(tidyverse)
+library(dplyr)
+con <- dbConnect(MySQL(), user='root', password='msds', dbname='mysqldb', host='localhost')
+#dbListTables(con)
+#head(dbGetQuery(con, "SELECT * FROM movie_rating"))
+movie_df = dbReadTable(con, 'movie_rating')
+head(movie_df)
+
+
+
+```
+
