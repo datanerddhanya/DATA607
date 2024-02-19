@@ -1,0 +1,151 @@
+---
+title: "DATA607Project1"
+author: "Dhanya Nair"
+date: "2024-02-16"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(readr)
+library(tidyr)
+
+# read the text file
+chess_ratings <- read_delim('https://raw.githubusercontent.com/datanerddhanya/DATA607/main/chess_ratings.txt',delim ="|", col_names = c ("state", "name", "number", "pointTotal", "prerating", "avgOpp"), trim_ws= TRUE, skip = 4, show_col_types = FALSE)
+
+#parse the data into a dataframe
+chess_rating <- data.frame(chess_ratings)
+
+#remove the lines having ----
+chess_rating <- subset(chess_rating, chess_rating$state != chess_rating$state[3])
+
+
+# splitting the data frame into two sets to get the name records and the state records
+chess_rating_name_rows <- chess_rating[grep("^[0-9]",chess_rating$state),]
+
+chess_rating_name_rows <- chess_rating_name_rows |> 
+  rename(
+    number = state,
+    player_name = name,
+    points_total = number,
+    round_1 = pointTotal,
+    round_2 = prerating,
+    round_3 = avgOpp,
+    round_4 = X7,
+    round_5 = X8,
+    round_6 = X9,
+    round_7 = X10)
+
+head(chess_rating_name_rows)
+
+
+chess_rating_state_rows <- chess_rating[grep("^[A-Z]",chess_rating$state),]
+
+chess_rating_state_rows <- chess_rating_state_rows |> 
+  rename(
+    ID = name)
+
+head(chess_rating_state_rows)
+```
+ 
+```{r}
+
+# combine two data frames using cbind
+
+ chess_rating_final_rows <- cbind(chess_rating_name_rows, chess_rating_state_rows)
+
+#select the required columns
+ chess_rating_final_rows <- chess_rating_final_rows[,c("number","player_name","points_total","round_1","round_2","round_3"  ,"round_4","round_5","round_6","round_7","state","ID")] 
+ 
+ 
+ # generate new column for rating
+ chess_rating_final_rows <- chess_rating_final_rows |> 
+   separate_wider_delim(ID, delim = "/ R:", names = c("UFS_ID", "rating"))
+ 
+ # generate new column for pre and post rating
+ chess_rating_final_rows <- chess_rating_final_rows |> 
+   separate_wider_delim(rating, delim = "->", names = c("pre_ratingpr", "post_rating"))
+ 
+ # generate new column for pre rating without provisioning
+ chess_rating_final_rows <- chess_rating_final_rows |> 
+   separate_wider_delim(pre_ratingpr, delim = "P", names = c("pre_rating", "provisioning"),too_few = "align_start")
+ 
+ # picking a substring in each round variable and then converting to numeric.
+ chess_rating_final_rows$round_1 = as.numeric(sub("[A-Z]","", chess_rating_final_rows$round_1))
+ chess_rating_final_rows$round_2 = as.numeric(sub("[A-Z]","", chess_rating_final_rows$round_2))
+ chess_rating_final_rows$round_3 = as.numeric(sub("[A-Z]","", chess_rating_final_rows$round_3))
+ chess_rating_final_rows$round_4 = as.numeric(sub("[A-Z]","", chess_rating_final_rows$round_4))
+ chess_rating_final_rows$round_5 = as.numeric(sub("[A-Z]","", chess_rating_final_rows$round_5))
+ chess_rating_final_rows$round_6 = as.numeric(sub("[A-Z]","", chess_rating_final_rows$round_6))
+ chess_rating_final_rows$round_7 = as.numeric(sub("[A-Z]","", chess_rating_final_rows$round_7))
+ 
+ # converting teh number column and pre_rating column to numeric
+ chess_rating_final_rows$number = as.numeric(chess_rating_final_rows$number)
+ chess_rating_final_rows$pre_rating = as.numeric(chess_rating_final_rows$pre_rating)
+ head(chess_rating_final_rows)
+
+```
+
+```{r}
+
+
+
+# Use recursion to populate opponent pre rating
+ 
+for (i in chess_rating_final_rows$round_1) 
+  {
+ chess_rating_final_rows$round_1[i] <- chess_rating_final_rows$pre_rating[chess_rating_final_rows$round_1[i]]
+}
+for (i in chess_rating_final_rows$round_2) 
+  {
+chess_rating_final_rows$round_2[i] <- chess_rating_final_rows$pre_rating[chess_rating_final_rows$round_2[i]]
+}
+for (i in chess_rating_final_rows$round_3) 
+  {
+chess_rating_final_rows$round_3[i] <- chess_rating_final_rows$pre_rating[chess_rating_final_rows$round_3[i]]
+}
+for (i in chess_rating_final_rows$round_4) 
+  {
+chess_rating_final_rows$round_4[i] <- chess_rating_final_rows$pre_rating[chess_rating_final_rows$round_4[i]]
+}
+for (i in chess_rating_final_rows$round_5) 
+  {
+chess_rating_final_rows$round_5[i] <- chess_rating_final_rows$pre_rating[chess_rating_final_rows$round_5[i]]
+}
+for (i in chess_rating_final_rows$round_6) 
+  {
+chess_rating_final_rows$round_6[i] <- chess_rating_final_rows$pre_rating[chess_rating_final_rows$round_6[i]]
+}
+for (i in chess_rating_final_rows$round_7) 
+  {
+chess_rating_final_rows$round_7[i] <- chess_rating_final_rows$pre_rating[chess_rating_final_rows$round_7[i]]
+}
+ head(chess_rating_final_rows)
+
+```
+```{r}
+# find the row wise mean
+chess_rating_final_rows <-
+  chess_rating_final_rows  |>
+  rowwise()   |>
+  mutate (row_mean = round(mean(c(round_1,round_2,round_3,round_4,round_5,round_6,round_7),na.rm=T),0))
+
+head(chess_rating_final_rows)
+```
+
+
+
+```{r}
+
+
+#write to a .csv file
+
+#select the required columns
+ chess_avg_csv <- chess_rating_final_rows[,c("player_name","state","points_total","pre_rating","row_mean")] 
+
+head(chess_avg_csv)
+
+write.csv(chess_avg_csv, file = "chess_rating_avg.csv")
+
+```
+
