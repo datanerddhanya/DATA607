@@ -1,0 +1,90 @@
+---
+title: "DATA607Assignment 5"
+author: "Dhanya Nair"
+date: "2024-02-23"
+output: html_document
+---
+
+1. Create a CSV file, read the file and tidy the data
+```{r}
+library(tidyr)
+library(dplyr)
+library(knitr)
+library(stringr)
+
+#read the csv file without any header row
+load <- read.csv('https://raw.githubusercontent.com/datanerddhanya/DATA607/main/Arrival_delays.csv',sep = ",", header= FALSE,stringsAsFactors=FALSE, quote = "\"")
+
+# provide a name to the columns
+load <-    rename(load,
+    Airline  = V1 ,
+    Arrivaltype = V2,
+    Los_Angeles = V3,
+    Phoenix = V4,
+    San_Diego = V5 ,   
+    San_Francisco = V6,
+    Seattle = V7
+  )
+   
+
+#delete the blank row and the row with text showing destination names
+ load<- load[grep("^[a-z]" , load$Arrivaltype),]
+  
+#update the two rows with missing airlines
+load$Airline[2]= "ALASKA" 
+load$Airline[4]= "AMWEST" 
+
+ 
+```
+
+2. Transform the data
+```{r}
+
+#pivot the data.frame longer
+load_final <- load |> 
+  pivot_longer(
+     cols = !(Airline:Arrivaltype) ,
+     names_to = "Destinations", 
+     values_to = "flight_count" ,
+    values_drop_na = TRUE
+   ) 
+
+#remove comma from the flight count values
+ load_final$flight_count<- as.numeric(gsub(",","",load_final$flight_count))
+  
+```
+
+3. compare the arrival delays for the two airlines
+
+AMWEST has more delayed flights than ALASKA Airlines.
+However for Seattle destination, the arrival delays are more for Alaska Airlines than AMWEST.
+```{r}
+
+
+    load_final %>%
+    group_by(Airline) %>%
+    filter(Arrivaltype == "delayed")  %>%
+   summarize(flight_count = sum(flight_count) )
+
+load_final %>%
+    group_by(Destinations,Airline) %>%
+    filter(Arrivaltype == "delayed")  %>%
+   summarize(flight_count = sum(flight_count), )
+
+load_final %>%
+    group_by(Airline,Arrivaltype) %>%
+     summarize(flight_count = sum(flight_count) )
+
+```
+
+By plotting the data, i see that Alaska has recorded greater proportion of delayed flights than AMWEST
+
+```{r}
+library(ggplot2)
+
+
+  ggplot( data = load_final , aes( x=Airline  , y=flight_count, fill = Arrivaltype )) + 
+    geom_bar(stat="identity") 
+ 
+```
+
