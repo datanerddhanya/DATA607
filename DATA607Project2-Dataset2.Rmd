@@ -1,0 +1,79 @@
+---
+title: "DATA607 Project 2"
+author: "Dhanya Nair"
+date: "2024-03-02"
+output: html_document
+---
+Dataset 2:Weather Data (by Institution): Average Temperature, Days of Precipitation, and Sunny Days
+
+Analysis: 
+To acquire the data, tidy, clean, transform and visualize the data
+
+Conclusion:
+1.I observed that few  of the institute like Ramapo College of New Jersey does not have a Avg temperature for few months.Hence had to use na.rm=true to remove them.
+2.when visualized the avg mean temperature, through histogram its is multimodal distribution and is not symmetric.
+3. i see a negative correlation between the two.lesser the precipitation, more are the sunny days.
+
+
+```{r}
+
+library(dplyr,warn.conflicts = FALSE)
+library(tidyr,warn.conflicts = FALSE)
+library(readr,warn.conflicts = FALSE)
+library(ggplot2)
+#i tried to scrape the data from the table displayed in the website, but i was not successful.
+
+#read the csv file on Climate_Indicators_Annual_Mean_Global_Surface_Temperature
+# i used file encoding to get the special character ° in the data.
+raw <- read.csv('https://raw.githubusercontent.com/datanerddhanya/DATA607/main/Institutions_Weather_Data.csv', sep = ",", fileEncoding="latin1")
+
+#Extract only the average high temperature for calculation purposes.
+ raw <- raw |> 
+ separate_wider_delim(Avg.Jan.Temp, delim = "°", names = c("Avg.Jan.Temp", "other"), too_many="drop") |>
+ separate_wider_delim(Avg.April.Temp, delim = "°", names = c("Avg.April.Temp", "other1"), too_many="drop") |>
+ separate_wider_delim(Avg.July.Temp, delim = "°", names = c("Avg.July.Temp", "other2"), too_many="drop") |>
+ separate_wider_delim(Avg.Oct.Temp, delim = "°", names = c("Avg.Oct.Temp", "other3"), too_many="drop")
+
+ # select the columns needed
+ weather_data <- raw |> 
+   select(!starts_with("other"))
+ 
+ 
+ # convert from character to numeric
+ weather_data$Avg.Jan.Temp = as.numeric(weather_data$Avg.Jan.Temp)
+  weather_data$Avg.April.Temp = as.numeric(weather_data$Avg.April.Temp)
+   weather_data$Avg.July.Temp = as.numeric(weather_data$Avg.July.Temp)
+    weather_data$Avg.Oct.Temp = as.numeric(weather_data$Avg.Oct.Temp)
+    
+# now we can sort the temperatures, find the mean , generate new columns etc
+# observed that one of the institute: Ramapo College of New Jersey does not have a temperature for april. Hence removing that row  
+ head(weather_data)
+ 
+ weather_data_stat <- weather_data |> 
+   rowwise() |> 
+  mutate( avg.temp = mean(c(Avg.Jan.Temp,Avg.April.Temp,Avg.July.Temp,Avg.Oct.Temp),na.rm = TRUE))
+ 
+ #summarise data by state
+ 
+ weather_data_stat_summary <- weather_data_stat %>%
+ group_by(State) %>%
+#summarise(across(everything(), list(mean))) %>%
+  summarise( avg.state.temp = mean(avg.temp),avg.state.prec = mean(Days.w.Precipitation), avg.state.sunnydays = mean(Sunny.Days))
+ 
+ 
+ # when visualized through historgram its is multimodal distrbution and is not symmetric.
+  statemean = mean(weather_data_stat_summary$avg.state.temp)
+  statesd = sd(weather_data_stat_summary$avg.state.temp)
+ ggplot(weather_data_stat_summary, aes(avg.state.temp))+
+   geom_histogram() +
+    stat_function(fun = dnorm, args = c(mean = statemean , sd = statesd), col = "tomato")
+
+
+ #checking if there is any correlation between precipitation and sunny days
+ # i see a negative correlation between the two.lesser the precipation, more are the sunny days.
+ ggplot(weather_data_stat_summary, aes(avg.state.sunnydays,avg.state.prec))+
+   geom_point() 
+ 
+
+```
+

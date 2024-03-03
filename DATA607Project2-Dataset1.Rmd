@@ -1,0 +1,80 @@
+---
+title: "DATA607 Project 2"
+author: "Dhanya Nair"
+date: "2024-03-02"
+output: html_document
+---
+Dataset 1: Annual estimates of mean surface temperature change measured with respect to a baseline climatology
+
+Analysis:
+i cleaned the data, transformed and calculated the mean statistic.
+
+Conclusion:
+Based on this analysis, Luxemberg ,Estonia, Serbia,Belgium and latvia countries may be experiencing a more pronounced impact in terms of temperature change.
+
+```{r}
+library(dplyr,warn.conflicts = FALSE)
+library(tidyr,warn.conflicts = FALSE)
+library(readr,warn.conflicts = FALSE)
+
+
+#read the csv file on Climate_Indicators_Annual_Mean_Global_Surface_Temperature
+load <- read.csv('https://raw.githubusercontent.com/datanerddhanya/DATA607/main/Indicator_3_1_Climate_Indicators_Annual_Mean_Global_Surface_Temperature_577579683071085080.csv',sep = ",", stringsAsFactors=FALSE, quote = "\"")
+
+#parse the data into a dataframe
+#load<- data.frame(load)
+
+# the data is wide as teh years are in the columns. i would like to tidy the data by moving it into #rows.
+load_pivot <- load  %>%
+  pivot_longer(
+     cols = !(ObjectId:CTS.Full.Descriptor) ,
+     names_to = "Year", 
+     values_to = "Mean.Surface.Temp.change" ,
+    values_drop_na = TRUE
+   ) 
+
+#need to split the Year column to remove the X value in it 
+load_clean <- load_pivot |> 
+   separate_wider_delim(Year, delim = "X", names = c("Blank", "Year"))
+  
+# cleaning up Country column to remove text after comma
+  extract_value <- function(x) {
+  if (grepl(",", x)) {
+    split_values <- strsplit(x, ",")[[1]]
+    return(trimws(split_values[1]))
+  } else {
+    return(trimws(x))
+  }
+  }
+
+# Apply the function to the entire column
+load_clean$Country <- sapply(load_clean$Country, extract_value)
+
+
+ 
+#Create an new data frame with the required columns
+load_final <- load_clean[,c('ObjectId','Country','ISO3','Unit','Year','Mean.Surface.Temp.change')]
+# transform(load_final, Mean.Surface.Temp.change = as.numeric(Mean.Surface.Temp.change))
+# load_final$Mean.Surface.Temp.change = as.numeric(load_final$Mean.Surface.Temp.change)
+
+
+#Calculate average climate change over all the years for a country
+load_climate_change <- load_final %>%
+ group_by(Country) %>%
+#summarise(across(everything(), list(mean))) %>%
+  summarise( Mean.Surface.Temp.change = mean(Mean.Surface.Temp.change)) %>%
+#  summarise(.funs = mean,na.rm=T)          
+arrange(desc(Mean.Surface.Temp.change))
+
+head(load_climate_change)
+
+# calculate overall center and spread
+mean = mean(load_climate_change$Mean.Surface.Temp.change)
+sd= sd(load_climate_change$Mean.Surface.Temp.change)
+
+#mean
+head(mean)
+
+#standard deviation
+head(sd)
+```

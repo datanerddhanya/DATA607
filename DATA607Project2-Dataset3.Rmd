@@ -1,0 +1,70 @@
+---
+title: "DATA607 Project 2"
+author: "Dhanya Nair"
+date: "2024-03-02"
+output: html_document
+---
+
+Dataset 3: 
+New York City Air Quality Data
+
+Analysis:
+Compare air pollutants levels vs. locations vs. time of year.
+
+Conclusion:
+
+I can observe here that the pollution levels for Nitrogen dioxide (NO2) and Fine particles (PM 2.5) have decreased over the years.
+
+Midtown(CD5) location has the highest pollution levels for Nitrogen dioxide (NO2) and Fine particles (PM 2.5) for 2021.
+```{r}
+
+
+
+library(dplyr,warn.conflicts = FALSE)
+library(tidyr,warn.conflicts = FALSE)
+library(readr,warn.conflicts = FALSE)
+library(ggplot2)
+
+#read the csv file 
+pollutant_levels <- read.csv('https://raw.githubusercontent.com/datanerddhanya/DATA607/main/Air_Quality_20240302.csv', fileEncoding="latin1")
+
+#select only the Annual Report time period category for analysis in Time.Period column
+pollutant_levels_summary <- pollutant_levels[grep("Annual",pollutant_levels$Time.Period),] 
+
+# cleanup Time.period variable to remove "Annual Report" and convert to numeric
+pollutant_levels_summary$Time.Period <- gsub("Annual Average ", " ",pollutant_levels_summary$Time.Period) 
+
+
+#Summarize to Pollutant and Year
+pollutant_levels_name <- pollutant_levels_summary  |>
+  group_by(Name,Time.Period) |>
+  summarise(mean = mean(Data.Value))
+
+#Summarize to Location and Year
+pollutant_levels_location <- pollutant_levels_summary  |>
+  group_by(Geo.Place.Name, Time.Period) |>
+  summarise(mean = mean(Data.Value))
+
+#Summarize to Location and Year
+pollutant_levels_name_location <- pollutant_levels_summary  |>
+  group_by(Name,Geo.Place.Name, Time.Period) |>
+  summarise(mean = mean(Data.Value))
+
+
+#Visualise using plots
+# I can observe here that the pollution levels for Nitrogen dioxide (NO2) and Fine particles (PM 2.5) have decreased over the years.
+
+ggplot(data =pollutant_levels_name, aes(Time.Period,mean) )+
+  geom_col(aes(colour=Name))
+
+#which city has the highest pollution levels of Nitrogen dioxide (NO2) and Fine particles (PM 2.5)
+#for the year 2021
+
+pollutant_levels_name_location[grepl("2021",pollutant_levels_name_location$Time.Period),] |>
+
+arrange(desc(mean))
+
+#Midtown(CD5) has the highest pollution levels for Nitrogen dioxide (NO2) and Fine particles (PM 2.5) for 2021.
+
+
+```
