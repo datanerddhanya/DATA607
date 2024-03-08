@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<MyFavoritebooks>
+    <Books>
+        <title>The Night Circus</title>
+        <authors>Erin Morgenstern</authors>
+        <publisher>New York : Doubleday</publisher>
+        <year>2011</year>
+        <format>Book</format>
+        <type>Fiction</type>
+    </Books>
+    <Books>
+        <title>Beach Read</title>
+        <authors>Emily Henry</authors>
+        <publisher>New York : Jove</publisher>
+        <year>2020</year>
+        <format>Book</format>
+        <type>Fiction</type>
+    </Books>
+    <Books>
+        <title>It’s a Whole Spiel</title>
+        <authors>Katherine Locke;Laura Silverman</authors>
+        <publisher>Knopf Books for Young Readers</publisher>
+        <year>2019</year>
+        <format>Kindle</format>
+        <type>Nonfiction</type>
+    </Books>
+</MyFavoritebooks>
