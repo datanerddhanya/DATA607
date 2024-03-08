@@ -1,0 +1,30 @@
+{
+  "MyFavoritebooks": {
+    "Books": [
+      {
+        "title": "The Night Circus",
+        "authors": "Erin Morgenstern",
+        "publisher": "New York : Doubleday",
+        "year": 2011,
+        "format": "Book",
+        "type": "Fiction"
+      },
+      {
+        "title": "Beach Read",
+        "authors": "Emily Henry",
+        "publisher": "New York : Jove",
+        "year": 2020,
+        "format": "Book",
+        "type": "Fiction"
+      },
+      {
+        "title": "It’s a Whole Spiel",
+        "authors": "Katherine Locke;Laura Silverman",
+        "publisher": "Knopf Books for Young Readers",
+        "year": 2019,
+        "format": "Kindle",
+        "type": "Nonfiction"
+      }
+    ]
+  }
+}
