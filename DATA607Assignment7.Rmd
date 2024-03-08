@@ -1,0 +1,146 @@
+---
+title: "DATA07Assignment 7"
+author: "Dhanya Nair"
+date: "2024-03-08"
+output: html_document
+---
+
+# Assignment – Working with HTML, XML and JSON in R
+
+**Assignment:**
+Pick three of your favorite books on one of your favorite subjects. At least one of the books should have more than one author. For each book, include the title, authors, and two or three other attributes that you find interesting.
+
+**Approach:**
+I picked the following books. The last book has two authors
+
+Title 	            Authors	                           Publisher	                    Year	format	type
+
+The Night Circus	  Erin Morgenstern	                 New York : Doubleday	          2011	Book	  Fiction
+
+Beach Read	        Emily Henry	                       New York : Jove	              2020	Book	  Fiction
+
+It’s a Whole Spiel	Katherine Locke;Laura Silverman	   Knopf Books for Young Readers	2019	Kindle	Nonfiction
+
+
+
+## Generating HTML
+I stored the book’s information above by creating a HTML file from scratch and typing these values.
+The html file created was then loaded in my github repo: https://raw.githubusercontent.com/datanerddhanya/DATA607/main/books_htmlformat.html
+
+```{r}
+#load the library for reading html file and creating tables
+library(rvest,warn.conflicts = FALSE)
+library(tibble)
+
+# load the html data into a vector
+book_html <- read_html("https://raw.githubusercontent.com/datanerddhanya/DATA607/main/books_htmlformat.html")
+
+# read the books in the list section
+books_html_list <- book_html |>  html_elements("li")
+books_html_list
+
+
+#create a tibble with the variables: title, authors,publisher, year, format, type  
+mytibble <- tibble(
+  title = books_html_list |> 
+    html_element(".title") |> 
+    html_text2(),
+  authors = books_html_list |> 
+    html_element(".authors") |> 
+    html_text2(),
+  publisher = books_html_list |> 
+    html_element(".publisher") |> 
+    html_text2(),
+  year = books_html_list |> 
+    html_element(".year") |> 
+    html_text2(),
+  format = books_html_list |> 
+    html_element(".format") |> 
+    html_text2(),
+  type = books_html_list |> 
+    html_element(".type") |> 
+    html_text2(),
+ )
+
+#create a dataframe
+books_final_from_html <- data.frame(mytibble)
+books_final_from_html 
+```
+
+**Conclusion:**
+I created a HTML file from scratch through R studio, uploaded to github, access the file in R markdown file and read the data to a dataframe.
+
+
+## Generating XML
+I stored the book’s information above by creating a XML file and typing these values.
+The Xml file which i then loaded in my github repo:
+
+https://raw.githubusercontent.com/datanerddhanya/DATA607/main/book_xmlformat.xml
+
+```{r}
+
+
+
+
+#load the library for reading XML file and creating tables
+library(XML)
+library(xml2)
+library(tibble)
+
+# load the xml data into a vector
+book_data <- read_xml("https://raw.githubusercontent.com/datanerddhanya/DATA607/main/book_xmlformat.xml")
+
+#parse to XML
+book_xml <- xmlParse(book_data, encoding = "UTF-8")
+book_xml
+
+# read the books variables into vector
+title <- xml_text(xml_find_all(book_data, ".//title"))
+authors <- xml_text(xml_find_all(book_data, ".//authors"))
+publisher <- xml_text(xml_find_all(book_data, ".//publisher"))
+year <- xml_text(xml_find_all(book_data, ".//year"))
+format <- xml_text(xml_find_all(book_data, ".//format"))
+type <- xml_text(xml_find_all(book_data, ".//type"))
+
+
+# Format as a tibble
+books <- tibble(title, authors,publisher,year, format, type)
+books
+
+#load to a dataframe
+books_final_from_xml <- xmlToDataFrame(nodes = getNodeSet(book_xml, "//Books"))
+
+books_final_from_xml
+
+```
+**Conclusion:**
+I created a XML file by hand through R studio, uploaded to github, access the file in R markdown file and read the data to a dataframe.
+
+
+## Generating JSON
+I stored the book’s information above by creating a JSON file and typing these values.
+The JSON file which i then loaded in my github repo:
+
+https://raw.githubusercontent.com/datanerddhanya/DATA607/main/book_jsonformat.json
+
+```{r}
+library(rjson)
+library(tidyjson)
+
+#read the json file.
+# as the file is in a nested format,we need to use rbind to append the rows
+result <- fromJSON(file="https://raw.githubusercontent.com/datanerddhanya/DATA607/main/book_jsonformat.json")
+book_final_from_json <- as.data.frame(do.call(rbind,result$MyFavoritebooks$Books))
+
+book_final_from_json 
+
+
+```
+
+
+**Conclusion:**
+I created a JSON file by hand through Notepad, uploaded to github, access the file in R markdown file and read the data to a data frame.
+
+
+**Final conclusion:**
+Yes, All the three dataframes could be generated in same format.
