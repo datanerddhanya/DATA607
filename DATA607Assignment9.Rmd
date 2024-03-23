@@ -1,0 +1,125 @@
+---
+title: "DATA607_Assignment 9"
+author: "Dhanya Nair"
+date: "2024-03-22"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Assignment:
+The New York Times web site provides a rich set of APIs, as described here: https://developer.nytimes.com/apis
+You’ll need to start by signing up for an API key.
+Your task is to choose one of the New York Times APIs, construct an interface in R to read in the JSON data, and transform it into an R DataFrame.
+
+## Methodology
+1. I signed up in NYT to create a account.
+2. then i created a app and enabled the API " Most Popular API" as it provides the Popular articles on NYTimes.com.
+3. I called this new app : NYT_API . This generated the API key fo my access.
+
+
+## Loading Packages
+
+```{r,warning=FALSE}
+#to make HTTP requests like GET 
+library(httr)
+
+
+#jsonlite is JSON parser/generator optimized for the web ..used for fromJSON()
+library(jsonlite)
+
+
+library(dplyr)
+```
+
+
+## get data from NYT mostpopular/v2/shared for the most shared articles on NYTimes.com  for last 7 days for share type: facebook
+
+```{r}
+#get data from NYT mostpopular/v2/shared for the most shared articles on NYTimes.com  for last 7 days for share type: facebook
+NYT_popular_Raw <- GET("https://api.nytimes.com/svc/mostpopular/v2/shared/7/facebook.json?api-key=eRN4OzxJAsN20SXKM5AR2pKBNfUVMN5Y") 
+
+#Parse to text
+NYT_popular_C <- content(NYT_popular_Raw, as = 'text') 
+
+
+#in json format
+NYT_popular_J <- fromJSON(NYT_popular_C)
+
+# Convert JSON to DataFrame
+NYT_popular_J   <- NYT_popular_J$results
+
+#select the required columns
+NYT_popular_shared <- subset(NYT_popular_J , select = c(url, published_date, type))
+
+#display the dataframe
+class(NYT_popular_shared)
+head(NYT_popular_shared)
+
+
+```
+
+## get data from NYT most popular/v2/viewed for the most viewed articles on NYTimes.com  for last 7 days
+
+
+```{r}
+
+
+#get data from NYT most popular/v2/viewed for the most viewed articles on NYTimes.com  for last 7 days
+NYT_mostviewed_raw <- fromJSON("https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?api-key=eRN4OzxJAsN20SXKM5AR2pKBNfUVMN5Y",flatten = TRUE)
+
+#pick the results 
+NYT_mostviewed <-NYT_mostviewed_raw$results 
+
+#confirm its a data frame
+class(NYT_mostviewed)
+
+#display the data frame
+head(NYT_mostviewed)
+
+
+```
+
+## Using HTTR2
+
+```{r}
+library(httr2)
+
+#request the data through WebAPI 
+req <- request("https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?api-key=eRN4OzxJAsN20SXKM5AR2pKBNfUVMN5Y")
+
+#Send the request
+resp <- req |> req_perform()
+
+
+
+# resp_body_* function is used to access the body. fo JSON use resp_body_json
+# when i wrote the code without simplifyVector = TRUE , it was in a list of lists and i was unable to convert to a dataframe. hence used simplifyVector = TRUE to simplify 
+
+resp_json <- resp |> resp_body_json(simplifyVector = TRUE)
+
+
+
+
+#pick just the results 
+NYT_mostviewed_1 <-resp_json$results
+
+
+
+#confirm its a data frame
+class(NYT_mostviewed_1)
+
+#display the data frame
+head(NYT_mostviewed_1)
+
+```
+
+## Conclusion:
+I am able to use httr and jsonlite packages to read data through WebAPI , persist and transform to a dataframe.
+I am able to use httr2 packages to read data through WebAPI , persist and transform to a dataframe.
+
