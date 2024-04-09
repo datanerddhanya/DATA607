@@ -1,0 +1,133 @@
+---
+title: "DATA607 Recommender System"
+author: "Dhanya Nair"
+date: "2024-04-09"
+output: html_document
+---
+
+## Introduction
+
+Recommender systems apply statistical and knowledge discovery techniques to the problem of
+making product recommendations based on previously recorded usage data.
+
+Recommendation systems use a number of different technologies. We can classify these systems into two broad groups:
+
+1.Content-based systems examine properties of the items recommended. 
+For instance, if a Netflix user has watched many cowboy movies, then recommend a movie classified in the database as having the “cowboy” genre.
+
+2.Collaborative filtering systems recommend items based on similarity measures between users and/or items. The items recommended to a user are those preferred by similar users. In Netflix, we can also use item-based collaborative filtering to suggest movies to users based on their viewing history and ratings. 
+
+For my analysis, i am identifying Netflix as the website and explore its recommender system.
+
+Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.
+
+
+## Scenario design analysis
+
+
+**Who is the target audience?**
+
+The users are subscribed to monthly or yearly subscription to the Netflix website to view Movies or TV Shows of their liking, provide ratings.
+
+
+**What are users’ key goals?**
+
+To have a enjoyable  movie watching experience.
+
+To spend very less time searching for desired movies.
+
+Easily discover movies through various search options and recommendations.
+
+To keep their information secure.
+
+
+**How can Netflix help users accomplish those goals?**
+
+Netflix can help accomplish these goals by 
+
+1. Aggregating movies around the world in different genres, years, geography etc and provide a platform to discover movies in a engaging way.
+
+2. It can run a recommender system to recommend movies/TV shows based on history, ratings, searches etc.
+
+3. It can also run sentiment analysis on the user pattern to find trends, popular shows,time spent, searched text with no results.
+
+4.Retain existing users with new content and more personalized experience.
+
+
+## How the Netflix recommendation system works
+
+Netflix's recommender system works in the following way:
+
+**Collaborative Filtering:**
+
+Netflix analyzes users' viewing history, ratings, and interactions with content to identify patterns and similarities between users. It recommends movies and TV shows that similar users have watched and enjoyed. For example, if User A and User B have similar viewing habits and both enjoy watching comedies, Netflix might recommend comedy movies to User A based on User B's preferences. Uses Matrix factorization
+![Collaborative Filtering](https://github.com/datanerddhanya/DATA607/blob/main/Screenshot%20CF.jpg?raw=true)
+
+
+**Content-Based Filtering:**
+
+Netflix also considers the characteristics and attributes of movies and TV shows, such as genre, cast, director, and plot keywords. It recommends content that is similar in theme, style, or genre to the ones users have previously watched or rated positively. For instance, if a user enjoys watching sci-fi movies, Netflix might suggest other sci-fi titles with similar themes or settings.
+
+**Personalization:**
+
+Netflix's recommendation system is highly personalized, taking into account each user's viewing history, ratings, and preferences. Recommendations are tailored to suit individual users' tastes and interests, leading to a more personalized and satisfying streaming experience.
+
+**Trending and Popular Content:**
+
+In addition to personalized recommendations, Netflix also features sections highlighting trending and popular content on its platform. These sections showcase movies and TV shows that are currently popular among Netflix users, helping users discover new and trending content.
+
+**Continue Watching and My List:**
+
+Netflix prominently displays a "Continue Watching" section on its homepage, allowing users to easily resume watching content they started but haven't finished. Additionally, users can curate their own personalized lists of favorite movies and TV shows using the "My List" feature, which Netflix takes into account when making recommendations.
+
+It uses RMSE(Root Mean Square Error) to measure the performance of algorithms.
+
+Netflix shows viewers recommendation clusters based on users’ preferences. These horizontal rows have titles that relate to videos in the group, almost like a category. Personalization comes into play by the order in which the content is arranged.
+
+Each row has three layers of personalization:
+
+The name of the row (e.g. Continue Watching, Trending Now, Award-Winning Dramas, etc.)
+Which titles appear in the row. 
+The ranking of those titles.
+The most strongly recommended rows head to the top of the page while weaker suggestions are pushed to the bottom. The recommendation system works by using a multitude of algorithmic approaches to determine the order. Systems like reinforcement learning, casual modeling, matrix factorization and bandits are put into play to achieve the best outcome for the order. 
+
+![Algorithm](https://github.com/datanerddhanya/DATA607/blob/main/Screenshot%20Algorithm.jpg?raw=true)
+
+
+
+![Algorithm Detail](https://github.com/datanerddhanya/DATA607/blob/main/Working_Process_Of_Netflix_Recommender_System.jpg?raw=true)
+
+## Reverse engineer
+
+The website shows a scrolling row by row of content by recommendations, Top picked, Continue Watching, Trending Now, Award-Winning Dramas etc.
+
+1. Instead of scrolling  down a lot, it will be a better experience if they can tile it different columns in one single row. user can select the tile..say Top Picked and only see that information.
+
+2. It will be helpful to provide insights on how much new content is added/ will be added in the year compared to other competitors so that users can be influenced to continue the subscription.
+
+## Ideas to improve Netflix recommendation capabilities
+
+We can further improve Netflix recommendation capabilities by 
+
+1.Applying Deep Learning methods to personalization and search.
+
+2.In video search e.g: movies showing Venice, Italy location.
+
+3.Tagging metadata within the content for more specific text searching e.g: politically incorrect stand up comedy.
+
+
+## Conclusions
+
+Recommender systems are truly transformational for e-commerce websites to have active user engagement and effective customer experience. 
+Netflix uses various techniques like Collaborative Filtering, Content-Based Filtering, Personalization to churn millions of movies and recommend to the users.
+We can further improve Netflix recommendation capabilities by Applying Deep Learning methods to personalization and search,In-video search to discover specific content within the video,tagging metadata .
+
+## References
+
+1. https://cran.r-project.org/web/packages/recommenderlab/vignettes/recommenderlab.pdf
+
+2. http://infolab.stanford.edu/~ullman/mmds/ch9.pdf
+
+3. https://research.netflix.com/search?q=recommender%20system
+
+4. https://www.invisibly.com/learn-blog/netflix-recommendation-algorithm/
