@@ -85,8 +85,8 @@ Emerson College,Boston,MA,36°/20°,57°/39°,82°/64°,62°/44°,132,201
 Suffolk University,Boston,MA,36°/20°,57°/39°,82°/64°,62°/44°,132,201
 Connecticut College,New London,CT,38°/21°,57°/39°,81°/64°,63°/44°,118,203
 United States Coast Guard Academy,New London,CT,38°/21°,57°/39°,81°/64°,63°/44°,118,203
-St Olaf College,Northfield,MN,23°/5°,57°35°,82°/61°,59°/37°,102,192
-Ramapo College of New Jersey,Mahwah,NJ,34°/17°,58/ 37°,81°/61°,61°40°,117,207
+St Olaf College,Northfield,MN,23°/5°,57°/35°,82°/61°,59°/37°,102,192
+Ramapo College of New Jersey,Mahwah,NJ,34°/17°,58/ 37°,81°/61°,61°/40°,117,207
 The University of Montana,Missoula,MT,34°/18°,58°/33°,85°/51°,57°/32°,159,120
 University of Wisconsin-Eau Claire,Eau Claire,WI,24°/5°,58°/33°,83°/59°,58°/36°,122,191
 Kettering University,Flint,MI,30°/15°,58°/34°,82°/59°,60°/38°,120,169
@@ -115,7 +115,7 @@ Franklin W Olin College of Engineering,Needham,MA,36°/17°,58°/37°,83°/62°,62°/40
 Hope College,Holland,MI,32°/20°,58°/38°,82°/62°,61°/43°,118,165
 Brown University,Providence,RI,37°/19°,58°/38°,83°/63°,63°/43°,127,200
 Rhode Island School of Design,Providence,RI,37°/19°,58°/38°,83°/63°,63°/43°,127,200
-Merrimack College,North Andover,MA,35°17°,58°/38°,83°/62°,62°/42°,127,201
+Merrimack College,North Andover,MA,35°/17°,58°/38°,83°/62°,62°/42°,127,201
 Northwestern University,Evanston,IL,32°/17°,58°/39°,83°/65°,62°/44°,125,193
 Roger Williams University,Bristol,RI,38°/22°,58°/39°,82°/64°,82°/64°,127,201
 John Carroll University,University Heights,OH,34°/21°,58°/40°,82°/65°,62°/46°,163,160
@@ -147,7 +147,7 @@ Southern Connecticut State University,New Haven,CT,38°/21°,59°/39°,83°/64°,64°/4
 Yale University,New Haven,CT,38°/21°,59°/39°,83°/64°,64°/44°,108,204
 Case Western Reserve University,Cleveland,OH,35°/22°,59°/41°,82°/65°,63°/46°,149,166
 University of Washington-Bothell Campus,Bothell,WA,48°/36°,59°/42°,76°/55°,60°/46°,162,164
-New York Institute of Technology,Old Westbury,NY,39°25°,59°/42°,83°/67°,64°/48°,124,168
+New York Institute of Technology,Old Westbury,NY,39°/25°,59°/42°,83°/67°,64°/48°,124,168
 Hofstra University,Hempstead,NY,39°/25°,59°/42°,82°/66°,64°/48°,126,172
 Adelphi University,Garden City,NY,39°/26°,59°/42°,83°/67°,64°/48°,127,173
 Illinois Institute of Technology,Chicago,IL,33°/20°,59°/42°,84°/68°,64°/48°,124,189
@@ -155,7 +155,7 @@ University of Illinois at Chicago,Chicago,IL,33°/20°,59°/42°,84°/68°,64°/48°,124
 University of Chicago,Chicago,IL,33°/20°,59°/42°,84°/68°,64°/48°,125,189
 DePaul University,Chicago,IL,33°/20°,59°/42°,84°/68°,63°/48°,126,189
 University of Washington-Seattle Campus,Seattle,WA,48°/37°,59°/43°,76°/57°,60°/46°,155,152
-Pennsylvania State University-Main Campus,University Park,PA,33°/17°,59°35°,82°/58°,62°/38°,140,182
+Pennsylvania State University-Main Campus,University Park,PA,33°/17°,59°/35°,82°/58°,62°/38°,140,182
 Grove City College,Grove City,PA,35°/17°,60°/35°,82°/58°,63°/39°,156,161
 State University of New York at New Paltz,New Paltz,NY,35°/13°,60°/35°,84°/59°,63°/37°,125,177
 Grinnell College,Grinnell,IA,28°/10°,60°/36°,84°/62°,62°/38°,196,104
@@ -200,14 +200,14 @@ Barnard College,New York,NY,39°/27°,61°/44°,85°/69°,65°/50°,122,224
 CUNY Hunter College,New York,NY,39°/27°,61°/44°,85°/69°,65°/50°,116,232
 Yeshiva University,New York,NY,39°/27°,61°/44°,85°/69°,65°/50°,116,23
 CUNY City College,New York,NY,38°/27°,61°/45°,85°/69°,64°/50°,123,234
-Oregon State University,Corvallis,OR,47°/34°,61°40°,82°/52°,65 42°,159,162
+Oregon State University,Corvallis,OR,47°/34°,61°/40°,82°/52°,65°/42°,159,162
 University of Colorado Boulder,Boulder,CO,47°/19°,62°/34°,88°/57°,66°/36°,88,245
 University of South Dakota,Vermillion,SD,30°/9°,62°/36°,86°/63°,64°/38°,80,208
 Juniata College,Huntingdon,PA,36°/19°,62°/37°,84°/61°,64°/40°,127,193
 Washington & Jefferson College,Washington,PA,36°/19°,62°/38°,82°/60°,63°/40°,148,162
 Bucknell University,Lewisburg,PA,36°/19°,62°/38°,84°/61°,64°/40°,128,176
 Susquehanna University,Selinsgrove,PA,36° /19°,62°/38°,85°/62°,64°/40°,128,178
-Cornell College,Mount Vernon,IA,29°/11°,62°/38°,84°62°,63°/40°,108,193
+Cornell College,Mount Vernon,IA,29°/11°,62°/38°,84°/62°,63°/40°,108,193
 Iowa State University,Ames,IA,29°/11°,62°/38°,84°/63°,63°/39°,109,202
 Lehigh University,Bethlehem,PA,37°/19°,62°/38°,84°/62°,64°/40°,120,202
 Moravian College,Bethlehem,PA,37°/19°,62°/38°,62°/38°,64°/40°,120,202
@@ -226,7 +226,7 @@ Augustana College,Rock Island,IL,31°/15°,62°/41°,85°/65°,64°/43°,115,198
 The College of New Jersey,Ewing,NJ,39°/22°,62°/41°,85°/65°,65°/44°,120,205
 Butler University,Indianapolis,IN,35°/20°,62°/42°,84°/65°,65°/44°,122,186
 Indiana University-Purdue University-Indianapolis,Indianapolis,IN,35°/20°,62°/42°,84°/65°,65°/44°,122,186
-New Jersey Institute of Technology,Newark,NJ,39°23°,62°/42°,86°/67°,66°/46°,116,190
+New Jersey Institute of Technology,Newark,NJ,39°/23°,62°/42°,86°/67°,66°/46°,116,190
 Rutgers University-Newark,Newark,NJ,39°/23°,62°/42°,86°/67°,66°/46°,206,206
 Lewis & Clark College,Portland,OR,48°/36°,62°/43°,81°/56°,64°/46°,156,144
 Portland State University,Portland,OR,48°/36°,62°/43°,81°/56°,64°/46°,156,146
@@ -289,7 +289,7 @@ University of Delaware,Newark,DE,41°/24°,65°/42°,87°/66°,67°/45°,112.5,201
 Rose-Hulman Institute of Technology,Terre Haute,IN,37°/20°,65°/43°,87°/65°,67°/43°,115,190
 Temple University,Philadelphia,PA,42°/27°,65°/44°,88°/68°,68°/49°,123,205
 Washington College,Chestertown,MD,41°/25°,65°/44°,87°/68°,68°/47°,113,211
-Rutgers University-Camden,Camden,NJ,42°/27°,65°/45°,87°69°,67°/49°,205,116
+Rutgers University-Camden,Camden,NJ,42°/27°,65°/45°,87°/69°,67°/49°,205,116
 Xavier University,Cincinnati,OH,39°/22°,66°/41°,87°/64°,67°/42°,123,179
 George Mason University,Fairfax,VA,42°/24°,66°/42°,86°/66°,67°/45°,119,198
 Transylvania University,Lexington,KY,41°/24°,66°/43°,86°/66°,68°/45°,119,190
@@ -317,7 +317,7 @@ George Washington University,Washington,DC,43°/27°,67°/45°,89°/69°,69°/48°,114,2
 Howard University,Washington,DC,43°/27°,67°/45°,89°/69°,69°/48°,114,203
 The University of the South,Sewanee,TN,45°/26°,67°/45°,85°/65°,69°/46°,119,204
 University of Virginia-Main Campus,Charlottesville,VA,44°/26°,67°/45°,86°/67°,67°/47°,108,219
-Saint Louis University,Saint Louis,MO,40° 23°,67°/46°,89°69°,69°/47°,105,202
+Saint Louis University,Saint Louis,MO,40°/23°,67°/46°,89°/69°,69°/47°,105,202
 Johns Hopkins University,Baltimore,MD,43°/27°,67°/46°,88°/69°,68°/49°,114,213
 University of Maryland-Baltimore County,Baltimore,MD,43°/27°,67°/46°,88°/69°,68°/49°,114,213
 Loyola University Maryland,Baltimore,MD,43°/27°,67°/46°,88°/69°,88°/69°,114,213
@@ -335,12 +335,12 @@ University of San Diego,San Diego,CA,66°/49°,68°/56°,75°/65°,73°/61°,38,263
 Sonoma State University,Rohnert Park,CA,58°/38°,69°/44°,82°/52°,77°/47°,75,255
 Berea College,Berea,KY,44°/26°,69°/45°,86°/65°,69°/46°,121,187
 University of Arkansas,Fayetteville,AR,46°/25°,69°/45°,89°/67°,70°/46°,101,218
-Saint Mary's College of California,Moraga,CA,57°/40°,69°/46°,69°/46°,75°50°,66,260
+Saint Mary's College of California,Moraga,CA,57°/40°,69°/46°,69°/46°,75°/50°,66,260
 College of William and Mary,Williamsburg,VA,48°/30°,69°/47°,88°/69°,71°/51°,212,116
 Stanford University,Stanford,CA,58°/41°,69°/47°,80°/57°,74°/51°,61,260
 San Jose State University,San Jose,CA,58°/42°,69°/48°,82°/58°,74°/52°,62,257
 Old Dominion University,Norfolk,VA,49°/33°,69°/49°,88°/72°,88°/72°,115,215
-Santa Clara University,Santa Clara,CA,58°/42°,69°/49°,80°/58°,74°53°,63,261
+Santa Clara University,Santa Clara,CA,58°/42°,69°/49°,80°/58°,74°/53°,63,261
 Washington and Lee University,Lexington,VA,46°/23°,70°/40°,88°/64°,70°/43°,102.8,218
 Virginia Military Institute,Lexington,VA,46°/23°,70°/40°,88°/64°,70°/43°,103,218
 University of North Georgia,Dahlonega,GA,50°/26°,70°/41°,86°/63°,71°/44°,117,222
@@ -351,7 +351,7 @@ Virginia Commonwealth University,Richmond,VA,47°/28°,70°/45°,90°/68°,71°/47°,112
 Wake Forest University,Winston-Salem,NC,48°/27°,70°/45°,87°/67°,70°/47°,107.1,216
 Vanderbilt University,Nashville,TN,47°/27°,70°/46°,89°/68°,72°/47°,117,205
 University of Richmond,University of Richmond,VA,47°/28°,70°/46°,89°/68°,70°/48°,111.9,211
-Murray State University,Murray,KY,45°/27°,70°/47°,89°/69°,71°48°,109,197
+Murray State University,Murray,KY,45°/27°,70°/47°,89°/69°,71°/48°,109,197
 Christopher Newport University,Newport News,VA,49°/33°,70°/49°,89°/71°,71°/53°,113,215
 San Diego State University,San Diego,CA,67°/46°,70°/53°,79°/64°,75°/57°,38,266
 University of Southern California,Los Angeles,CA,66°/48°,70°/53°,79°/63°,75°/58°,32,292
@@ -387,7 +387,7 @@ Pepperdine University,Malibu,CA,67°/45°,73°/49°,86°/59°,79°/54°,36,181
 Georgia State University,Atlanta,GA,52°/33°,73°/49°,88°/70°,73°/52°,109,217
 Morehouse College,Atlanta,GA,52°/33°,73°/49°,88°/70°,73°/52°,109,217
 Spelman College,Atlanta,GA,52°/33°,73°/49°,88°/70°,73°/52°,109,217
-Agnes Scott College,Decatur,GA,52°/33°,73°/49°,88°70°,72°/52°,109,218
+Agnes Scott College,Decatur,GA,52°/33°,73°/49°,88°/70°,72°/52°,109,218
 Saint Michael's College,Colchester,VT,67°/45°,73°/49°,86°/59°,79°/54°,36,281
 Siena College,Loudonville,NY,67°/45°,73°/49°,86°/59°,79°/54°,36,281
 Soka University of America,Aliso Viejo,CA,67°/43°,73°/49°,73°/49°,78°/54°,37,281
@@ -438,13 +438,13 @@ University of South Carolina-Columbia,Columbia,SC,57°/36°,78°/52°,94°/72°,77°/54
 University of Nevada-Las Vegas,Las Vegas,NV,58°/37°,78°/53°,104°/78°,80°/56°,26,294
 Sam Houston State University,Huntsville,TX,60°/40°,78°/56°,93°/73°,81°/58°,82,204
 University of Louisiana at Lafayette,Lafayette,LA,61°/42°,78°/58°,91°/73°,80°/59°,108,217
-New Mexico State University-Main Campus,Las Cruces,NM,58°/27°,78°44°,95°/67°,79°/46°,43,293
+New Mexico State University-Main Campus,Las Cruces,NM,58°/27°,78°/44°,95°/67°,79°/46°,43,293
 Southwestern University,Georgetown,TX,60°/36°,79°/54°,95°/72°,81°/56°,73,229
 Texas A & M University-College Station,College Station,TX,61°/39°,79°/56°,95°/73°,82°/58°,90,209
 Louisiana State University,Baton Rouge,LA,61°/40°,79°/56°,92°/73°,80°/57°,109,214
 The University of Texas at Austin,Austin,TX,61°/38°,79°/56°,95°/73°,81°/58°,79,228
 Embry-Riddle Aeronautical University-Daytona Beach,Daytona Beach,FL,68°/47°,79°/59°,90°/73°,82°/66°,119,229
-Rice University,Houston,TX,63°43°,79°/60°,93°/75°,82°/61°,90,204
+Rice University,Houston,TX,63°/43°,79°/60°,93°/75°,82°/61°,90,204
 University of Houston,Houston,TX,63°/45°,79°/61°,92°/76°,82°/63°,86,204
 Tulane University of Louisiana,New Orleans,LA,62°/45°,79°/61°,92°/76°,80°/64°,108,216
 Florida Agricultural and Mechanical University,Tallahassee,FL,64°/39°,80°/52°,92°/71°,82°/57°,103,233
